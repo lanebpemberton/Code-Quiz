@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>Code Quiz</title>
     <link rel="shortcut icon" type="image/png" href="./Assets/open-iconic-master/svg/check.svg"/>
+    <!-- Iconic import -->
+    <link rel="stylesheet" href="./Assets/open-iconic-master/font/css/open-iconic-bootstrap.css">
+    <link rel="stylesheet" href="./Assets/styles/codeQuiz.css">
 </head>
 <body>
     <!-- NAVBAR SECTION -->
@@ -24,9 +27,10 @@
           </div>
         </div>
       </nav>
-      <div id="quiz" class="container pt-3">
+      <!-- QUIZ SECTION -->
+      <div id="quiz" class="container pt-3 flex-column justify-content-center">
         <h1>Press 'Start' when you're ready to take the quiz</h1>
-        <ul>
+        <ul class="iconList">
             <li>
                 <span class="oi oi-bullhorn"></span> Answer as many questions possible in 60 seconds
             </li>
@@ -39,7 +43,7 @@
         </ul>
       </div>
       <!-- HIGHSCORE SECTION -->
-      <div id="highscores" class="container pt-3" style="display: none">
+      <div id="highscores" class="container pt-3">
         <table class="table">
             <thead>
               <tr>

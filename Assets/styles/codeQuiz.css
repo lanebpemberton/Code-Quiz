@@ -1,0 +1,14 @@
+/* hide highscore initially */
+#highscores {
+    display: none
+}
+
+/* add underline to clearly describe which button is active*/
+.nav-link.active {
+    text-decoration: underline;
+}
+
+/* remove bullet list icons from list */
+.iconList {
+    list-style-type:none;
+}
