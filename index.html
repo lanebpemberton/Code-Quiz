@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/png" href="./Assets/open-iconic-master/svg/check.svg"/>
 </head>
 <body>
+    <!-- NAVBAR SECTION -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Code Quiz</a>
@@ -17,12 +18,31 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">Quiz</a>
               <a class="nav-link" href="#">Highscores</a>
             </div>
           </div>
         </div>
       </nav>
+      <!-- HIGHSCORE SECTION -->
+      <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">PLACE</th>
+                <th scope="col">INITIALS</th>
+                <th scope="col">SCORE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>LBP</td>
+                <td>120</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="./Assets/js/codeQuiz.js"></script>
