@@ -18,14 +18,28 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" id="quizButton">Quiz</a>
-              <a class="nav-link" id="highscoresButton">Highscores</a>
+              <a class="nav-link active" aria-current="page" id="quizButton" href="#">Quiz</a>
+              <a class="nav-link" id="highscoresButton" href="#">Highscores</a>
             </div>
           </div>
         </div>
       </nav>
+      <div id="quiz" class="container pt-3">
+        <h1>Press 'Start' when you're ready to take the quiz</h1>
+        <ul>
+            <li>
+                <span class="oi oi-bullhorn"></span> Answer as many questions possible in 60 seconds
+            </li>
+            <li>
+                <span class="oi oi-bullhorn"></span> Careful! Wrong answers have consequences
+            </li>
+            <li>
+                <span class="oi oi-bullhorn"></span> Answer correctly, quicker for additional points
+            </li>
+        </ul>
+      </div>
       <!-- HIGHSCORE SECTION -->
-      <div id="highscores" class="container">
+      <div id="highscores" class="container pt-3" style="display: none">
         <table class="table">
             <thead>
               <tr>
