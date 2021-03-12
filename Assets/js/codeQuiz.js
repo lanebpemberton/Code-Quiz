@@ -1,6 +1,7 @@
 //setup variables using jquery
 var quizButton = $("#quizButton");
 var highscoresButton = $("#highscoresButton");
+var startButton = $("#startButton");
 
 //function that calls everytime quiz button is selected
 function onQuizButton()
@@ -30,6 +31,18 @@ function onHighscoresButton()
     quizButton.removeClass("active");
 }
 
+//function that initiates the beginning of the quiz
+function onStartButton()
+{
+    startCountDownToQuiz();
+}
+
+function startCountDownToQuiz()
+{
+
+}
+
 //setup on click events using jquery
 quizButton.click(onQuizButton)
 highscoresButton.click(onHighscoresButton)
+startButton.click(onStartButton);
