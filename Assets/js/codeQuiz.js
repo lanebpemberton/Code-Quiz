@@ -55,9 +55,35 @@ function setupQuiz()
     //reset visual timer
     quizTimer.text("Time: 30");
     //reset global timer variable
-    timer = 3   0;
+    timer = 30;
     //start interval
     timerInterval = setInterval(decrementTimer, 1000);
+    //show first question
+    showQuestion();
+}
+
+function showQuestion()
+{
+    if(currentQuizOptions.length>0)
+    {
+        //randomly select a question
+        var currentQuestionIndex = retrieveRandomIndexFromArray(currentQuizOptions); 
+        var currentQuestionObject = currentQuizOptions[currentQuestionIndex];
+        //set question
+        var quizQuestion = $("quizQuestion");
+        quizQuestion.text(currentQuestionObject.question);
+        //get options randomly
+        for(var a = 0;a<currentQuestionObject.options.length;a++)
+        {
+            var optionIndex = retrieveRandomIndexFromArray(currentQuestionObject.options);
+            
+        }
+    }
+}
+
+function retrieveRandomIndexFromArray(array)
+{
+    return Math.floor(Math.random() * array.length);
 }
 
 function decrementTimer()
@@ -66,6 +92,17 @@ function decrementTimer()
     timer --;
     //update visual
     quizTimer.text("Time: " + timer);
+    //check for zero
+    if(timer == 0)
+    {
+        endOfQuiz();
+    }
+}
+
+function endOfQuiz()
+{
+    //stop timer
+    clearInterval(timerInterval);
 }
 
 var correctAnswerValue = 100
@@ -77,25 +114,21 @@ var quizOptions =
         question:"What is an example of a primitive variable type?",
         answer:"null",
         options:["object","function","null","caveman"],
-        hasBeenUsed:false
     },
     {
         question:"Which answer is an integer?",
         answer:"96",
         options:["96","\"96\"","integer","whole number"],
-        hasBeenUsed:false
     },
     {
         question:"Which answer is a string?",
         answer:"\"boom sauce\"",
         options:["\"boom sauce\"","boom sauce","96","ninety six"],
-        hasBeenUsed:false
     },
     {
         question:"Which answer is an object?",
         answer:"{name:'lane'}",
         options:["var object","[]","{name:'lane'}","ninety six"],
-        hasBeenUsed:false
     }
 ]
 
