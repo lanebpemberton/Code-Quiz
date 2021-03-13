@@ -39,8 +39,26 @@ function onStartButton()
 
 function setupQuiz()
 {
-
+    //hide quiz start screen
+    var quizStartScreen = $("#quizStart");
+    quizStartScreen.hide();
+    //show quiz form
+    var quizForm = $("#quizForm");
+    quizForm.show();
 }
+
+var quizOptions = 
+[
+    {
+        question:"What is an example of a primitive variable type?",
+        answer:"null",
+        options:["object","function","null","caveman"],
+        hasBeenUsed:false
+    },
+    {
+        
+    }
+]
 
 //create array of objects with possible questions and answers
 
