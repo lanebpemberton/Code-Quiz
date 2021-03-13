@@ -34,13 +34,15 @@ function onHighscoresButton()
 //function that initiates the beginning of the quiz
 function onStartButton()
 {
-    startCountDownToQuiz();
+    setupQuiz();
 }
 
-function startCountDownToQuiz()
+function setupQuiz()
 {
 
 }
+
+//create array of objects with possible questions and answers
 
 //setup on click events using jquery
 quizButton.click(onQuizButton)

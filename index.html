@@ -29,23 +29,48 @@
       </nav>
       <!-- QUIZ SECTION -->
       <div id="quiz" class="container pt-3">
-          <!-- Header -->
-        <h1>Press 'Start' when you're ready to take the quiz</h1>
-        <!-- List of instructions -->
-        <ul class="iconList pt-3 pb-3">
-            <li>
-                <span class="oi oi-bullhorn"></span> Answer as many questions possible in 60 seconds
-            </li>
-            <li>
-                <span class="oi oi-bullhorn"></span> Careful! Wrong answers have consequences
-            </li>
-            <li>
-                <span class="oi oi-bullhorn"></span> Answer correctly, quicker for additional points
-            </li>
-        </ul>
-        <!-- Start quiz button -->
-        <div class="d-grid col-4 mx-auto">
-            <button type="button" class="btn btn-primary btn-lg" id="startButton">Start</button>
+          <!-- Quiz start screen -->
+          <div id="quizStart">
+            <!-- Title -->
+            <h1>Press 'Start' when you're ready to take the quiz</h1>
+            <!-- List of instructions -->
+            <ul class="iconList pt-3 pb-3">
+                <li>
+                    <span class="oi oi-bullhorn"></span> Answer as many questions as possible in 60 seconds
+                </li>
+                <li>
+                    <span class="oi oi-bullhorn"></span> Careful! Wrong answers have consequences
+                </li>
+                <li>
+                    <span class="oi oi-bullhorn"></span> Answer quicker for additional points
+                </li>
+            </ul>
+            <!-- Start quiz button -->
+            <div class="d-grid col-4 mx-auto">
+                <button type="button" class="btn btn-primary btn-lg" id="startButton">Start</button>
+            </div>
+          </div>
+        <!-- Quiz form -->
+        <div id="quizForm">
+            <!-- Quiz question and timer-->
+            <div class="row">
+                <div class="col-10">
+                    <h2 id="quizQuestion">This is a quiz question</h2>
+                </div>
+                <div class="col-2">
+                    <h3 id="quizTimer">Time: 60</h2>
+                </div>
+            </div>
+            <div class="list-group">
+                <button id="aButton" type="button" class="list-group-item list-group-item-action">The current button</button>
+                <button type="bButton" class="list-group-item list-group-item-action">A second item</button>
+                <button type="cButton" class="list-group-item list-group-item-action">A third button item</button>
+                <button type="dButton" class="list-group-item list-group-item-action">A fourth button item</button>
+            </div>
+            <!-- Correct/Wrong Answer alert -->
+            <div class="alert" role="alert">
+                A simple success alert—check it out!
+            </div>
         </div>
       </div>
       <!-- HIGHSCORE SECTION -->
