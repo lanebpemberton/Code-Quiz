@@ -2,6 +2,7 @@
 var quizButton = $("#quizButton");
 var highscoresButton = $("#highscoresButton");
 var startButton = $("#startButton");
+var quizTimer = $("#quizTimer");
 
 //function that calls everytime quiz button is selected
 function onQuizButton()
@@ -37,6 +38,10 @@ function onStartButton()
     setupQuiz();
 }
 
+var currentQuizOptions = [];
+var timer = 30;
+var timerInterval = null;
+
 function setupQuiz()
 {
     //hide quiz start screen
@@ -45,7 +50,26 @@ function setupQuiz()
     //show quiz form
     var quizForm = $("#quizForm");
     quizForm.show();
+    //create current quiz options from global options variable
+    currentQuizOptions = quizOptions.slice(); 
+    //reset visual timer
+    quizTimer.text("Time: 30");
+    //reset global timer variable
+    timer = 3   0;
+    //start interval
+    timerInterval = setInterval(decrementTimer, 1000);
 }
+
+function decrementTimer()
+{
+    //decrement timer variable by one
+    timer --;
+    //update visual
+    quizTimer.text("Time: " + timer);
+}
+
+var correctAnswerValue = 100
+var wrongAnswerValue = -50
 
 var quizOptions = 
 [
@@ -56,7 +80,22 @@ var quizOptions =
         hasBeenUsed:false
     },
     {
-        
+        question:"Which answer is an integer?",
+        answer:"96",
+        options:["96","\"96\"","integer","whole number"],
+        hasBeenUsed:false
+    },
+    {
+        question:"Which answer is a string?",
+        answer:"\"boom sauce\"",
+        options:["\"boom sauce\"","boom sauce","96","ninety six"],
+        hasBeenUsed:false
+    },
+    {
+        question:"Which answer is an object?",
+        answer:"{name:'lane'}",
+        options:["var object","[]","{name:'lane'}","ninety six"],
+        hasBeenUsed:false
     }
 ]
 
