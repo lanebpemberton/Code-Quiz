@@ -11,6 +11,8 @@ var button3 = $("#Button3");
 var quizAlert = $("#quizAlert");
 var quizScore = $("#quizScore");
 var inputGroup = $("#inputGroup");
+var initialsInput = $("#initialsInput");
+var submitInitials = $("#submitInitials");
 
 //function that calls everytime quiz button is selected
 function onQuizButton()
@@ -38,6 +40,8 @@ function onHighscoresButton()
     //set highscores button to be active button
     highscoresButton.addClass("active");
     quizButton.removeClass("active");
+    //setup highscores table
+    resetHighscoresTable();
 }
 
 //function that initiates the beginning of the quiz
@@ -229,6 +233,50 @@ function endOfQuiz()
     buttonGroup.hide();
     //show input group
     inputGroup.show();
+    //update quiz question title
+    quizQuestion.text("Results");
+}
+
+function onSubmitInitials()
+{
+    //write initials and score to local storage
+    var highscores = localStorage.getItem("highscores");
+    if(highscores !== null)
+    {
+        //parse string into expecting object
+        var highscoresObject = JSON.parse(highscores);
+    }else
+    {
+        //create highscores object
+        var highscoresObject = [];
+    }
+    //setup currect highscore to add to storage
+    var currentHighscore = 
+    {
+        "initials": initialsInput.text(),
+        "score": score
+    }
+    //add score to highscores object
+    highscoresObject.push(currentHighscore);
+    //sort highscore objects
+    highscoresObject.sort((a, b) => (b.score - a.score));
+    //stringify and save
+    localStorage.setItem(JSON.stringify(highscoresObject));
+    onHighscoresButton();
+}
+
+function onClearHighscores()
+{
+    //clear local storage
+    localStorage.clear();
+}
+
+function resetHighscoresTable()
+{
+    //remove all existing rows
+
+    //add rows from storage
+    $('#myTable tr:last').after('<tr>...</tr><tr>...</tr>');
 }
 
 var correctAnswerValue = 100
@@ -269,3 +317,4 @@ button0.click(checkQuestion)
 button1.click(checkQuestion)
 button2.click(checkQuestion)
 button3.click(checkQuestion)
+submitInitials.click(onSubmitInitials);

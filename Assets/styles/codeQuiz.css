@@ -1,5 +1,5 @@
 /* hide highscore and quiz form initially */
-#highscores, #quizForm, #quizAlert, #inputGroup {
+#highscores, #quizForm, #quizAlert, #inputGroup{
     display: none
 }
 
