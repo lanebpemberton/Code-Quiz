@@ -70,13 +70,17 @@ function showQuestion()
         var currentQuestionIndex = retrieveRandomIndexFromArray(currentQuizOptions); 
         var currentQuestionObject = currentQuizOptions[currentQuestionIndex];
         //set question
-        var quizQuestion = $("quizQuestion");
+        var quizQuestion = $("#quizQuestion");
         quizQuestion.text(currentQuestionObject.question);
         //get options randomly
         for(var a = 0;a<currentQuestionObject.options.length;a++)
         {
             var optionIndex = retrieveRandomIndexFromArray(currentQuestionObject.options);
-            
+            //set option to button
+            var button = $("#Button" + a)
+            button.text(currentQuestionObject.options[optionIndex]);
+            //remove option from array
+            currentQuestionObject.options.splice(optionIndex, 1);
         }
     }
 }
