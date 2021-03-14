@@ -3,12 +3,14 @@ var quizButton = $("#quizButton");
 var highscoresButton = $("#highscoresButton");
 var startButton = $("#startButton");
 var quizTimer = $("#quizTimer");
+var buttonGroup = $("#buttonGroup");
 var button0 = $("#Button0");
 var button1 = $("#Button1");
 var button2 = $("#Button2");
 var button3 = $("#Button3");
 var quizAlert = $("#quizAlert");
 var quizScore = $("#quizScore");
+var inputGroup = $("#inputGroup");
 
 //function that calls everytime quiz button is selected
 function onQuizButton()
@@ -109,7 +111,7 @@ function showQuestion()
     }else
     {
         //user has reached the end of the quiz
-        console.log("no more questions");
+        endOfQuiz();
     }
     //start correct answer interval
     correctAnswerInterval = setInterval(decrementCorrectAnswerScore,100);
@@ -215,6 +217,18 @@ function endOfQuiz()
 {
     //stop timer
     clearInterval(timerInterval);
+    //make alert primary
+    quizAlert.removeClass("alert-success")
+    quizAlert.removeClass("alert-danger")
+    quizAlert.addClass("alert-primary")
+    //update alert text
+    quizAlert.text("You've reached the end of the quiz! Your score was " + score);
+    //show alert
+    quizAlert.show();
+    //hide button group
+    buttonGroup.hide();
+    //show input group
+    inputGroup.show();
 }
 
 var correctAnswerValue = 100
