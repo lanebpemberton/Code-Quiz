@@ -13,6 +13,7 @@ var quizScore = $("#quizScore");
 var inputGroup = $("#inputGroup");
 var initialsInput = $("#initialsInput");
 var submitInitials = $("#submitInitials");
+var clearHighscores = $("#clearHighscores")
 
 //function that calls everytime quiz button is selected
 function onQuizButton()
@@ -44,6 +45,21 @@ function onHighscoresButton()
     resetHighscoresTable();
 }
 
+function showStartScreen()
+{
+    //show quiz start screen
+    var quizStartScreen = $("#quizStart");
+    quizStartScreen.show();
+    //hide quiz form
+    var quizForm = $("#quizForm");
+    quizForm.hide();
+    //hide input group and alert
+    inputGroup.hide();
+    quizAlert.hide();
+    //show button group
+    buttonGroup.show();
+}
+
 //function that initiates the beginning of the quiz
 function onStartButton()
 {
@@ -68,6 +84,10 @@ function setupQuiz()
     quizTimer.text("Time: 30");
     //reset global timer variable
     timer = 30;
+    //reset visual score
+    quizScore.text("Score: 0");
+    //reset global score
+    score = 0;
     //start interval
     timerInterval = setInterval(decrementTimer, 1000);
     //show first question
@@ -234,6 +254,7 @@ function endOfQuiz()
     //show input group
     inputGroup.show();
     //update quiz question title
+    var quizQuestion = $("#quizQuestion");
     quizQuestion.text("Results");
 }
 
@@ -253,7 +274,7 @@ function onSubmitInitials()
     //setup currect highscore to add to storage
     var currentHighscore = 
     {
-        "initials": initialsInput.text(),
+        "initials": initialsInput.val(),
         "score": score
     }
     //add score to highscores object
@@ -261,7 +282,10 @@ function onSubmitInitials()
     //sort highscore objects
     highscoresObject.sort((a, b) => (b.score - a.score));
     //stringify and save
-    localStorage.setItem(JSON.stringify(highscoresObject));
+    localStorage.setItem("highscores",JSON.stringify(highscoresObject));
+    //reset quiz view
+    showStartScreen()
+    //show highscores
     onHighscoresButton();
 }
 
@@ -269,14 +293,27 @@ function onClearHighscores()
 {
     //clear local storage
     localStorage.clear();
+    //resest view
+    resetHighscoresTable();
 }
 
 function resetHighscoresTable()
 {
-    //remove all existing rows
+    //remove all existing rows except first
+    $("#highscoresTable").find("tr:gt(0)").remove();
+    //get data from local storage
+    var highscores = localStorage.getItem("highscores");
+    if(highscores != null)
+    {
+        var highscoresObject = JSON.parse(highscores);
+        //add rows from storage
+        for(var a = 0;a<highscoresObject.length;a++)
+        {
+            var prettyIndex = a+1;
+            $('#highscoresTable tr:last').after(`<tr><th>${prettyIndex}</th><td>${highscoresObject[a].initials}</td><td>${highscoresObject[a].score}</td></tr>`);
+        }
+    }
 
-    //add rows from storage
-    $('#myTable tr:last').after('<tr>...</tr><tr>...</tr>');
 }
 
 var correctAnswerValue = 100
@@ -318,3 +355,4 @@ button1.click(checkQuestion)
 button2.click(checkQuestion)
 button3.click(checkQuestion)
 submitInitials.click(onSubmitInitials);
+clearHighscores.click(onClearHighscores)
