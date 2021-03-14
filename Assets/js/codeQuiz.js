@@ -3,6 +3,12 @@ var quizButton = $("#quizButton");
 var highscoresButton = $("#highscoresButton");
 var startButton = $("#startButton");
 var quizTimer = $("#quizTimer");
+var button0 = $("#Button0");
+var button1 = $("#Button1");
+var button2 = $("#Button2");
+var button3 = $("#Button3");
+var quizAlert = $("#quizAlert");
+var quizScore = $("#quizScore");
 
 //function that calls everytime quiz button is selected
 function onQuizButton()
@@ -62,18 +68,35 @@ function setupQuiz()
     showQuestion();
 }
 
+//declare current quiz object globally so it can be accessed in other functions
+var currentQuestionObject = {};
+//setup interval that takes time away from the correct answer value
+var correctAnswerInterval = null;
+
 function showQuestion()
 {
+    //reset buttons to non active
+    $('.list-group-item').each(function() 
+    {
+        var currentButton = $("#" + this.id);
+        currentButton.removeClass("active");
+        currentButton.removeClass("disabled");
+    });
+
+    //reset alert if visible
+    quizAlert.hide();
+
     if(currentQuizOptions.length>0)
     {
         //randomly select a question
         var currentQuestionIndex = retrieveRandomIndexFromArray(currentQuizOptions); 
-        var currentQuestionObject = currentQuizOptions[currentQuestionIndex];
+        currentQuestionObject = currentQuizOptions[currentQuestionIndex];
         //set question
         var quizQuestion = $("#quizQuestion");
         quizQuestion.text(currentQuestionObject.question);
         //get options randomly
-        for(var a = 0;a<currentQuestionObject.options.length;a++)
+        var optionsLength = currentQuestionObject.options.length;
+        for(var a = 0;a<optionsLength;a++)
         {
             var optionIndex = retrieveRandomIndexFromArray(currentQuestionObject.options);
             //set option to button
@@ -82,12 +105,97 @@ function showQuestion()
             //remove option from array
             currentQuestionObject.options.splice(optionIndex, 1);
         }
+        correctAnswerValue = 100;
+    }else
+    {
+        //user has reached the end of the quiz
+        console.log("no more questions");
     }
+    //start correct answer interval
+    correctAnswerInterval = setInterval(decrementCorrectAnswerScore,100);
+    //remove current question from array of questions
+    currentQuizOptions.splice(currentQuestionIndex,1);
 }
 
 function retrieveRandomIndexFromArray(array)
 {
     return Math.floor(Math.random() * array.length);
+}
+
+function decrementCorrectAnswerScore()
+{
+    if(correctAnswerValue > 15)
+    {
+        correctAnswerValue -= 1;
+    }else
+    {
+        //lowest correct answer score possible
+        correctAnswerValue = 15;
+        //stop interval
+        clearInterval(correctAnswerInterval);
+    }
+}
+
+function checkQuestion(event)
+{
+    //clear correct answer interval
+    clearInterval(correctAnswerInterval);
+    var optionSelected = $(event.target);
+    if(optionSelected.text() == currentQuestionObject.answer)
+    {
+        correctAnswer(optionSelected);
+    }else
+    {
+        wrongAnswer(optionSelected);
+    }
+    setAllNonActiveButtonsInactive();
+    setTimeout(showQuestion, 2000)
+}
+
+function correctAnswer(selected)
+{
+    //set class of option to active
+    selected.addClass("active");
+    //show alert as visible and green
+    quizAlert.show();
+    quizAlert.addClass("alert-success");
+    quizAlert.removeClass("alert-danger");
+    quizAlert.text("Correct! +" + correctAnswerValue + " points!");
+    //increment global score value
+    updateScore(correctAnswerValue)
+}
+
+function wrongAnswer(selected)
+{
+    //set class of option to active
+    selected.addClass("active");
+    //show alert as visible and red
+    quizAlert.show();
+    quizAlert.addClass("alert-danger");
+    quizAlert.removeClass("alert-success");
+    quizAlert.text("Incorrect! " + wrongAnswerValue + " points!");
+    //increment global score value
+    updateScore(wrongAnswerValue)
+}
+
+//user cannot continue pressing buttons after inital answer
+function setAllNonActiveButtonsInactive()
+{
+    //set buttons to in active
+    $('.list-group-item').each(function() 
+    {
+        var currentButton = $("#" + this.id);
+        if(!currentButton.hasClass("active"))
+        {
+            currentButton.addClass("disabled");
+        }
+    });
+}
+
+function updateScore(scoreToUpdate)
+{
+    score += scoreToUpdate;
+    quizScore.text("Score: " + score);
 }
 
 function decrementTimer()
@@ -111,6 +219,7 @@ function endOfQuiz()
 
 var correctAnswerValue = 100
 var wrongAnswerValue = -50
+var score = 0;
 
 var quizOptions = 
 [
@@ -142,3 +251,7 @@ var quizOptions =
 quizButton.click(onQuizButton)
 highscoresButton.click(onHighscoresButton)
 startButton.click(onStartButton);
+button0.click(checkQuestion)
+button1.click(checkQuestion)
+button2.click(checkQuestion)
+button3.click(checkQuestion)
