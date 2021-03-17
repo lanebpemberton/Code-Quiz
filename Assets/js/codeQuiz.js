@@ -341,6 +341,16 @@ var quizOptions =
         question:"Which answer is an object?",
         answer:"{name:'lane'}",
         options:["var object","[]","{name:'lane'}","ninety six"],
+    },
+    {
+        question: "Find value of 'i' on last loop: for(var i=0;i<56;i+=2)",
+        answer:"54",
+        options:["56","55","54","Infinity"]
+    },
+    {
+        question: "Find value of 'i' on last loop: for(var i=0;i<=56;i+=2)",
+        answer:"56",
+        options:["56","55","54","Infinity"]
     }
 ]
 
