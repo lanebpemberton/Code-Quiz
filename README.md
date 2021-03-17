@@ -3,6 +3,7 @@
 - Quiz application gives user thirty seconds to answer as many questions correctly as possible
 - Answering a question incorrectly penalizes the user by subtracting points from their score
 - Answering a question quickly rewards the user with increased points
+- User can save their highscore after the quiz finishes
 
 **WEBSITE LINK**
 https://lanebpemberton.github.io/Code-Quiz

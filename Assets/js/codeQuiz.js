@@ -78,8 +78,8 @@ function setupQuiz()
     //show quiz form
     var quizForm = $("#quizForm");
     quizForm.show();
-    //create current quiz options from global options variable
-    currentQuizOptions = quizOptions.slice(); 
+    //create current quiz options from global options variable using deep copy
+    currentQuizOptions = JSON.parse(JSON.stringify(quizOptions)); 
     //reset visual timer
     quizTimer.text("Time: 30");
     //reset global timer variable
