@@ -22,8 +22,3 @@
 #quizQuestion, .list-group {     
     text-align: left;
 }
-
-/* make timer text right align */
-#quizTimer {
-    text-align: right;
-}
